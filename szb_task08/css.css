@@ -1,0 +1,77 @@
+body{
+	margin: 0px;
+}
+.main{
+	position: absolute;
+	width: 100%;
+}
+.content{
+	border: 1px solid #999;
+	background-color: #eee;
+	margin: 10px;
+	height: 48px;
+}
+@media (min-width: 768px){
+.col-md-4{
+	position: relative;
+	display: inline-block;
+	width: 33.3%;
+	float: left;
+}
+.col-md-3{
+	position: relative;
+	display: inline-block;
+	width: 25%;
+	float: left;
+}
+.col-md-6{
+	position: relative;
+	display: inline-block;
+	width: 50%;
+	float: left;
+}
+.col-md-1{
+	position: relative;
+	display: inline-block;
+	width: 8.3%;
+	float: left;
+}
+.col-md-2{
+	position: relative;
+	display: inline-block;
+	width: 16.6%;
+	float: left;
+}
+}
+@media  (max-width: 768px){
+.col-min-6{
+	position: relative;
+	display: inline-block;
+	width: 50%;
+	float: left;
+}
+.col-min-12{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	float: left;
+}
+.col-min-3{
+	position: relative;
+	display: inline-block;
+	width: 25%;
+	float: left;
+}
+.col-min-2{
+	position: relative;
+	display: inline-block;
+	width: 16.6%;
+	float: left;
+}
+.col-min-8{
+	position: relative;
+	display: inline-block;
+	width: 66.6%;
+	float: left;
+}
+}

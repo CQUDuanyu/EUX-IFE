@@ -1,0 +1,26 @@
+.main{
+	background-color: #ccc;
+	width: 400px;
+	height: 200px;
+	margin: auto;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+.cir1{
+	height: 50px;
+	width: 50px;
+	background-color: #ffcc00;
+	border-bottom-right-radius:50px;
+}
+.cir2{
+	height: 50px;
+	width: 50px;
+	background-color: #ffcc00;
+	border-top-left-radius:50px;
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+}

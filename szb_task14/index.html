@@ -46,7 +46,7 @@ var aqiData = [
     array.sort( function (value1,value2){
     return value2[1]-value1[1];
   });
-    result+='<li>第'+(i+1)+'名: '+array[i][0]+'</li>';
+    result+='<li>第'+(i+1)+'名: '+array[i][0]+'  '+array[i][1]+'</li>';
   }
 
   document.getElementById("aqi-list").innerHTML = result;

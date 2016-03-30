@@ -1,0 +1,38 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+window.onload=(function(){
+		var len = /^.{4,16}$/;
+		var submit = document.getElementById('submit');
+		var msg    = document.getElementsByTagName("p");
+		function validate(){
+			var name = document.getElementById("name").value;
+			alert(name);
+			if(!(len.test(name))){
+				msg.style.color = "red";
+				msg.innerHTML = "输入不符合要求";
+			}
+
+		}
+    if(submit){
+		submit.addEventListener('click',validate(),false);
+    }
+
+	})()
+	</script>
+	<style type="text/css">
+	 #submit{
+	 	background-color:#2f79ba;
+	 	color: #fff;
+	 	border:1px solid #000;
+	 	height: 30px;
+	 	width: 50px;
+	 }
+	</style>
+</head>
+<form action="" onsubmit="javascript" method="post">
+名称：<input type="text" name="name" id="name">
+<input type="submit" value="验证" id="submit">
+<p>必填，长度为4-16个字符</p>
+</html>

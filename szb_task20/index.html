@@ -1,0 +1,134 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>task20</title>
+	<style type="text/css">
+	#result div{
+		margin: 10px;
+		padding: 5px;
+		background-color: red;
+		text-align: center;
+		float: left;
+	}
+	</style>
+</head>
+<body>
+<script type="text/javascript">
+window.onload=function(){
+	var stack = [1,2,3];
+	function leftunshift(){
+		var content = document.getElementById("input").value;
+		var con = content.split(",");
+		for(var i in con){
+		stack.unshift(con[i]);
+		}
+		return stack;
+	}
+	function rightpush(){
+		var content = document.getElementById("input").value;
+		var con = content.split(",");
+		for(var i in con){
+		stack.push(con[i]);
+		}
+		return stack;
+	}
+	function leftshift(){
+		if(stack.length==0){
+			alert("数组已为空");
+		}else{
+		var msg = stack.shift();
+		alert(msg);
+		}
+		return stack;
+	}
+	function rightpop(){
+		if(stack.length==0){
+			alert("数组已为空");
+		}else{
+		var msg = stack.pop();
+		alert(msg);
+		}
+		return stack;
+	}
+
+	function datasearch(){
+		var searchcontent = document.getElementById("searchcontent").value;
+		var reg = new RegExp(searchcontent+"\+");
+		for(var i=0;i<=stack.length-1;i++){
+			var match = reg.exec(stack[i]);
+			if(match){
+				var result = document.getElementById(stack[i]);
+				result.style.backgroundColor = "yellow";
+
+			}
+		}
+	}
+
+	function render(stack){
+
+		var result = document.getElementById("result");
+		result.innerHTML="";
+		for(var i in stack){
+		 result.innerHTML  += "<div id="+stack[i]+">"+ stack[i] +"</div>" ;
+	}
+	}
+
+	function init(){
+        //监听事件 左侧进
+        //render(stack);
+		var leftin = document.getElementById("leftin");
+		leftin.addEventListener("click",function(event){
+			var content = document.getElementById("input").value;
+		
+			leftunshift();
+			render(stack);
+
+		})
+
+		//
+		var rightin = document.getElementById("rightin");
+		rightin.addEventListener("click",function(event){
+			var content = document.getElementById("input").value;
+	
+			rightpush();
+			render(stack);
+
+		})
+
+		//
+		var leftout = document.getElementById("leftout");
+		leftout.addEventListener("click",function(event){
+			
+			leftshift();
+			render(stack);
+
+		})
+
+		//
+		var rightout = document.getElementById("rightout");
+		rightout.addEventListener("click",function(event){
+			rightpop();
+			render(stack);
+		})
+		//
+		var search = document.getElementById("search");
+		search.addEventListener("click",function(event){
+			datasearch();
+		})
+	}
+	init();
+	render(stack);
+}
+</script>
+	<textarea type="text" id="input" ></textarea>
+	<button id="leftin">左侧进</button>
+	<button id="rightin">右侧进</button>
+	<button id="leftout">左侧出</button>
+	<button id="rightout">右侧出</button>
+	<input type="text" id="searchcontent" />
+	<button id="search">搜索</button>
+	<div id="result"></div>
+
+	
+</body>
+</html>

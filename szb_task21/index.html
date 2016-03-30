@@ -1,0 +1,144 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>task20</title>
+	<style type="text/css">
+	#result div{
+		margin: 10px;
+		padding: 5px;
+		background-color: red;
+		text-align: center;
+		float: left;
+	}
+	#like-result div{
+		margin: 10px;
+		padding: 5px;
+		background-color: blue;
+		text-align: center;
+		float: left;
+		display:block;
+	}
+	#main{
+		top:200px;
+		position: absolute;
+	}
+	</style>
+</head>
+<body>
+<script type="text/javascript">
+window.onload=function(){
+	var stack = [1,2,3];
+	var quene = [3,4,5];
+	function leftunshift(){
+		var content = document.getElementById("input").value.trim();
+		if(content!=""){
+		var con = content.split(",");
+		for(var i in con){
+		stack.unshift(con[i]);
+		if(stack.length>10){
+			rightpop(stack);
+		}
+		}
+		}
+		return stack;
+	}
+	function leftunshift1(quene){
+		var content = document.getElementById("like").value.trim();
+		if(content!=""){
+			alert(typeof(content));
+		var con = content.split(",");
+		for(var i in con){
+			
+		quene.unshift(con[i]);
+
+		
+		}
+		}
+		quene1=quene;
+		quene = cleardata(quene1);
+		alert(quene);
+		return quene;
+	}
+
+	function rightpop(stack){
+		if(stack.length==0){
+			alert("数组已为空");
+		}else{
+		stack.pop();
+		}
+		return stack;
+	}
+	function rightpop1(quene){
+		if(quene.length==0){
+			alert("数组已为空");
+		}else{
+		quene.pop();
+		}
+		return stack;
+	}
+
+	function cleardata(quene){
+		var n={},r=[];
+		for(var i=0;i<quene.length;i++){
+			if(!n[quene[i]]){
+				n[quene[i]]=true;
+				r.push(quene[i]);
+			}
+		}
+		return r;
+	}
+
+	function render(stack){
+
+		var result = document.getElementById("result");
+		result.innerHTML="";
+		for(var i in stack){
+		 result.innerHTML  += "<div id="+stack[i]+">"+ stack[i] +"</div>" ;
+	}
+	}
+
+	function render1(quene){
+
+		var likeresult = document.getElementById("like-result");
+		likeresult.innerHTML="";
+		alert(quene);
+		for(var i in quene){
+		 likeresult.innerHTML  += "<div id="+quene[i]+">"+ quene[i] +"</div>" ;
+	}
+	}
+
+	function init(){
+        //监听事件 左侧进
+        //render(stack);
+		var check = document.getElementById("check");
+		check.addEventListener("click",function(event){
+		
+			leftunshift();
+			render(stack);
+
+		})
+		var submit = document.getElementById("submit");
+		submit.addEventListener("click",function(event){
+		
+			leftunshift1(quene);
+			render1(quene);
+
+		})
+		
+	}
+	init();
+	render(stack);
+	render1(quene);
+}
+</script>
+	<p><label for="like">Tag:</label><input type="text" name="like" id="like" /><button id="submit">确定</button></p>
+
+	<div id="like-result"></div>
+	<div id="main">
+	<textarea type="text" id="input" ></textarea>
+	<button id="check">确定爱好</button>
+	<div id="result"></div>
+	</div>
+	
+</body>
+</html>

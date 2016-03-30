@@ -1,0 +1,146 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>task18</title>
+	<style type="text/css">
+	#result div{
+		background-color: red;
+		text-align: center;
+		float: left;
+		margin: 1px;
+	}
+	</style>
+</head>
+<body>
+<script type="text/javascript">
+window.onload=function(){
+	var stack = [20,50,60,100,57,65,];
+	function leftunshift(){
+		if(stack.length==60){
+			alert("队列已满");
+		}else{
+
+		var content = document.getElementById("input").value;
+		if(content>=10&&content<=100){
+		stack.unshift(content);
+		return stack;
+		}else{
+			alert("输入的数字不符合要求");
+		}
+		}
+	}
+	function rightpush(){
+		if(stack.length==60){
+			alert("队列已满");
+		}else{
+		var content = document.getElementById("input").value;
+		if(content>=10&&content<=100){
+		stack.push(content);
+		return stack;
+		}else{
+			alert("输入的数字不符合要求");
+		}
+	}
+	}
+	function leftshift(){
+		if(stack.length==0){
+			alert("数组已为空");
+		}else{
+		var msg = stack.shift();
+		alert(msg);
+		}
+		return stack;
+	}
+	function rightpop(){
+		if(stack.length==0){
+			alert("数组已为空");
+		}else{
+		var msg = stack.pop();
+		alert(msg);
+		}
+		return stack;
+	}
+
+	function render(stack){
+
+		var result = document.getElementById("result");
+		result.innerHTML="";
+		for(var i in stack){
+		 result.innerHTML  += "<div style='postion:relative;width:10px;height:"+stack[i]+"px;'></div>" ;
+	}
+	}
+	function datasort(){
+		for (var i=0;i<=stack.length-1;i++){
+			for (var j = i; j <= stack.length-1; j++) {
+				if(stack[j]<stack[i]){
+					var temp = stack[j];
+					stack[j] = stack[i];
+					stack[i] = temp;
+					render(stack);
+
+				}
+			}
+		}
+	}
+	function init(){
+        //监听事件 左侧进
+        //render(stack);
+		var leftin = document.getElementById("leftin");
+		leftin.addEventListener("click",function(event){
+			var content = document.getElementById("input").value;
+			content = parseInt(content);
+			if(!(Number.isInteger(content))){
+				alert("请输入整数");
+			}else{
+			leftunshift();
+			render(stack);
+		}
+		})
+
+		//
+		var rightin = document.getElementById("rightin");
+		rightin.addEventListener("click",function(event){
+			var content = document.getElementById("input").value;
+			content = parseInt(content);
+			if(!(Number.isInteger(content))){
+				alert("请输入整数");
+			}else{
+			rightpush();
+			render(stack);
+		}
+		})
+
+		//
+		var leftout = document.getElementById("leftout");
+		leftout.addEventListener("click",function(event){
+			
+			leftshift();
+			render(stack);
+
+		})
+
+		//
+		var rightout = document.getElementById("rightout");
+		rightout.addEventListener("click",function(event){
+			rightpop();
+			render(stack);
+		})
+
+		var datasort1 = document.getElementById("sort");
+		datasort1.addEventListener("click",function(event){
+			datasort();
+		})
+	}
+	init();
+	render(stack);
+}
+</script>
+	<input type="text" id="input" />
+	<button id="leftin">左侧进</button>
+	<button id="rightin">右侧进</button>
+	<button id="leftout">左侧出</button>
+	<button id="rightout">右侧出</button>
+	<button id="sort">排序</button>
+	<div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Taks33</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table{
+            border-collapse:collapse;
+            position: relative;
+
+
+        }
+        td{
+            width:50px;
+            height:50px;
+            float: left;
+            text-align: center;
+            line-height: 50px;
+            box-sizing: border-box;
+        }
+        .stage{
+            border-top:1px solid grey;
+            border-left:1px solid grey;
+        }
+        .right{
+            border-right:1px solid grey;
+        }
+        .bottom{
+            border-bottom:1px solid grey;
+        }
+        #tank{
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(180deg,blue, blue 20%, red 21%, red 80%);
+            position: relative;
+            top:150px;
+            left: 100px;
+        }
+        #task{
+            margin:20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="tank"></div>
+    <table>
+            <tr>
+                <td></td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage right"></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage right"></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage right"></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage right"></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage right"></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage right"></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage right"></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage right"></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage"></td>
+                <td class="stage right"></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td class="stage bottom"></td>
+                <td class="stage bottom"></td>
+                <td class="stage bottom"></td>
+                <td class="stage bottom"></td>
+                <td class="stage bottom"></td>
+                <td class="stage bottom"></td>
+                <td class="stage bottom"></td>
+                <td class="stage bottom"></td>
+                <td class="stage bottom"></td>
+                <td class="stage bottom right"></td>
+            </tr>
+    </table>
+    <form id="task">
+        <input type="text" autofocus="true">
+        <input type="submit" value="执行">
+    </form>
+
+    <script>
+        var task = document.getElementById('task');
+        var text = task.getElementsByTagName('input')[0];
+        var tank = document.getElementById('tank');
+        var tankObj = {
+            angle:0,
+            dom:tank,
+            head:0,
+            direction:['top', 'left', 'bottom', 'right'],
+            go:function () {
+                switch (this.head) {
+                    case 0:
+                        var top = parseInt(getComputedStyle(this.dom).top)
+                        top -= 50;
+                        if (top < 100) {
+                            top = 100;
+                        }
+                        this.dom.style.top = top + 'px';
+
+                        break;
+                    case 1:
+                        var left = parseInt(getComputedStyle(this.dom).left)
+                        left -= 50;
+                        if (left < 50) {
+                            left = 50;
+                        }
+                        this.dom.style.left = left + 'px';
+                        break;
+                    case 2:
+                        var left = parseInt(getComputedStyle(this.dom).left)
+                        left += 50;
+                        if (left > 500) {
+                            left = 500;
+                        }
+                        this.dom.style.left = left + 'px';
+                        break;
+                    case 3:
+                        var top = parseInt(getComputedStyle(this.dom).top)
+                        top += 50;
+                        if (top > 550) {
+                            top = 550;
+                        }
+                        this.dom.style.top = top + 'px';
+                        break;
+                    default:
+                        alert(this.head);
+                        break;
+                }
+            },
+            turnLeft: function () {
+                this.head += 1;
+                this.head %= 3;
+                this.angle -= 90;
+                var rotate = 'rotate(' + this.angle + 'deg)';
+                this.dom.style.transform = rotate;
+            },
+            turnRight: function () {
+                this.head -=1;
+                if (this.head < 0) {
+                    this.head += 4;
+                }
+                this.angle += 90;
+                var rotate = 'rotate(' + this.angle + 'deg)';
+                this.dom.style.transform = rotate;
+
+            },
+            turnBack: function () {
+                this.head -=2;
+                if (this.head < 0) {
+                    this.head += 4;
+                }
+                this.angle += 180;
+                var rotate = 'rotate(' + this.angle + 'deg)';
+                this.dom.style.transform = rotate;
+            }
+        }
+
+        task.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var value = text.value.toUpperCase();
+            switch (value) {
+                case 'GO':
+                    tankObj.go();
+                    break;
+                case 'TUN LEF':
+                    tankObj.turnLeft();
+                    break;
+                case 'TUN RIG':
+                    tankObj.turnRight();
+                    break;
+                case 'TUN BAC':
+                    tankObj.turnBack();
+                    break;
+                default:
+                alert('请输出指定字符，不区分大小写：GO/TUN LEF/TUN RIG/TUN BAC')
+                    break;
+            }
+
+
+        })
+
+    </script>
+</body>
+</html>

@@ -250,7 +250,7 @@
             turnLeft: function () {
                 // 更改方向同时旋转tank
                 this.head += 1;
-                this.head %= 3;
+                this.head %= 4;
                 this.angle -= 90;
                 var rotate = 'rotate(' + this.angle + 'deg)';
                 this.dom.style.transform = rotate;

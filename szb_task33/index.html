@@ -199,14 +199,15 @@
 
     <script>
         var task = document.getElementById('task');
-        var text = task.getElementsByTagName('input')[0];
+        var input = task.getElementsByTagName('input')[0];
         var tank = document.getElementById('tank');
         var tankObj = {
-            angle:0,
-            dom:tank,
-            head:0,
-            direction:['top', 'left', 'bottom', 'right'],
+            angle:0,    // 初始角度为0
+            dom:tank,   // dom结点
+            head:0,     // 0, 1, 2, 3 对应四个方向
+            direction:['top', 'left', 'bottom', 'right'],   // 感觉可有可无，但是为了后续扩展还是带上吧
             go:function () {
+                // 0， 1， 2， 3分别对应向上，下，左，右移动
                 switch (this.head) {
                     case 0:
                         var top = parseInt(getComputedStyle(this.dom).top)
@@ -226,20 +227,20 @@
                         this.dom.style.left = left + 'px';
                         break;
                     case 2:
-                        var left = parseInt(getComputedStyle(this.dom).left)
-                        left += 50;
-                        if (left > 500) {
-                            left = 500;
-                        }
-                        this.dom.style.left = left + 'px';
-                        break;
-                    case 3:
                         var top = parseInt(getComputedStyle(this.dom).top)
                         top += 50;
-                        if (top > 550) {
-                            top = 550;
+                        if (top > 500) {
+                            top = 500;
                         }
                         this.dom.style.top = top + 'px';
+                        break;
+                    case 3:
+                        var left = parseInt(getComputedStyle(this.dom).left)
+                        left += 50;
+                        if (left > 550) {
+                            left = 550;
+                        }
+                        this.dom.style.left = left + 'px';
                         break;
                     default:
                         alert(this.head);
@@ -247,6 +248,7 @@
                 }
             },
             turnLeft: function () {
+                // 更改方向同时旋转tank
                 this.head += 1;
                 this.head %= 3;
                 this.angle -= 90;
@@ -275,8 +277,9 @@
         }
 
         task.addEventListener('submit', function (e) {
+            // 为了方便使用和测试，监听submit事件，并且对输入字符采取大写转换
             e.preventDefault();
-            var value = text.value.toUpperCase();
+            var value = input.value.toUpperCase();
             switch (value) {
                 case 'GO':
                     tankObj.go();
@@ -294,8 +297,8 @@
                 alert('请输出指定字符，不区分大小写：GO/TUN LEF/TUN RIG/TUN BAC')
                     break;
             }
-
-
+            // 执行完成后清空input
+            input.value = '';
         })
 
     </script>
